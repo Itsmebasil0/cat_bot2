@@ -1,20 +1,18 @@
 /* Copyright (C) 2020 farhan-dqz.
-any can add bgm with names
 julie 
 */
 const fs = require('fs')
-const Julie = require('../events');
+const Asena = require('../events');
 const {MessageType, Mimetype } = require('@adiwajshing/baileys');
 const FilterDb = require('./sql/filters');
 const Config = require('../config')
 const jid = Config.DISBGM !== false ? Config.DISBGM.split(',') : [];
 const afn = Config.PLKS !== false ? Config.PLKS.split(',') : [];
-const afnp = Config.THERI_KICK !== false ? Config.THERI_KICK.split(',') : [];
 const Language = require('../language');
 const Lang = Language.getString('filters');
 
 
-Julie.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
+Asena.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
 
     if (match === null) {
@@ -34,7 +32,7 @@ Julie.addCommand({pattern: 'filter ?(.*)', fromMe: true, desc: Lang.FILTER_DESC,
         await message.client.sendMessage(message.jid,Lang.FILTERED.format(match[0].replace(/['"]+/g, '')),MessageType.text);
     }
 }));
-Julie.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
+Asena.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, dontAddCommandList: true}, (async (message, match) => {
     match = match[1].match(/[\'\"\“](.*?)[\'\"\“]/gsm);
     if (match === null) {
         return await message.client.sendMessage(message.jid,Lang.NEED_REPLY + '\n*Example:* ```.stop "hello"```',MessageType.text)
@@ -51,23 +49,23 @@ Julie.addCommand({pattern: 'stop ?(.*)', fromMe: true, desc: Lang.STOP_DESC, don
     
 if (Config.GEAR == 'one') {  
     
-Julie.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
+Asena.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
         if(Config.BGMFILTER){
             var uri = encodeURI(match[1])
         let banned = jid.find( Jid => Jid === message.jid);
         if(banned !== undefined) return
         if (!!message.mention && message.mention[0] == '918921483992@s.whatsapp.net') {
-await message.client.sendMessage(message.jid, fs.readFileSync('./media/uploads/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
+await message.client.sendMessage(message.jid, fs.readFileSync('./httm/uploads/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
         }
         if (!!message.mention && message.mention[0] == Config.MENTION) {
-await message.client.sendMessage(message.jid, fs.readFileSync('./media/uploads/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
+await message.client.sendMessage(message.jid, fs.readFileSync('./httm/uploads/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
         }
         
-const array = ['Aarulle','Achan','Add','Alive','Ara','Ariyilla','Ayin','Ayn','Baby','Back','Bgm','Big','Booyah','Bot','Bye','Call','Cant','Cash','Chath','Chaya','Chunk','Corona','Cr7 back','Cr7','Da','Don','Error','Evide','Fast','Feel aayi','Feel','Fek','Fun','Goal','Gud nyt','Haters','Hehe','Helo','Help','Hlo','How','Illa','Insane','Johny','Julie','JulieMwol','Kalikkando','Kalyanam','Kgf','Kill','Killadi','King','Kittiyo','Kooi','Kozhu','Kundan','Leave','Look','Love','Mass','Myr','Neeyo','Nge','Njangal','Ook','Patt','Patti','Pbd','Pinky','Pinkymol','Poda','Podi','Ponn','Pora','Potte','Povano','Poweresh','Poyo','Pwoli','Remove','Sad','Scene','Sed','Set','Sorry','Tagall','Thamasha','Thendi','Thnx','Vaa','Vaanam','Vada','Vannu','Welcome','Wow','Yesh','Z aayi','aara','add','adi','admin','ariyam','ariyo','avastha','ayn','baa','baby','back','bie','big fan','broken','bye','cant','chadhi','charlie','chath','chatho','chill','da','die','doubt','endi','ennitt','enth patti','entha','evide','exam','fast','feel','fresh','gd n8','gift','good bye','good night','hacker','hambada','hate','hbday','hlo','how','illa','insane','johny','kali','kalyanam','kar98','kill','kitti','kittiyo','kozhi','kunda','kundan','kunna','leave','line','lover','lub','malayalam','manasilayo','mention','morning','neeyo','nge','njangal','onam','ook','paavam','pani','para','parayatte','patti','pavam','pbd','photo','place','pm','podi','poli','ponn','post','potte','pova','power','poyi','rare','recharge','remove','sad','saji','samshayam','save','scene','sed bgm','sed','set aano','single','sketched','sneham','sorry','sthalam','tagall','thaa','thall','thantha','tharuo','thech','thee','thendi','theri','thett','thnx','tholvi','thot','thug','thyr','trance','umfi','urang','uyir','vaa','vaanam','vannu','venda','voice','waiting','why','yesh','die','engane ind','fork','kannapi','like','mass','new','patti','poyo','thayoli','udayip','Udayip','Thayoli','Poyo','Patti','New','Mass','Like','Kannapi','Fork','Engane ind','Die','Ayyo','ayyo','Welcome','bot porra','Bot porra','enoda','Enoda','kunna','maari nikk','Maari nikk','remove akk','where','Where']
+const array = ['Hi','Hlo','Aarulle','Ayn','Block','Bott chathu','Dii','Dora','Fan','basil','Food','Good night','Group active','Happy','I hate you','I love you','Ijjathi','Insult','Ivan','Kannappi','Kollam','Kollatte','Kozhi','Kunna','Manassilayo','Miss you','Mm','Mng','Nee','Ok da','Patti','Poli','Pottan','Pova','Povalle','Rip','Sarasu','Sed','Seen','Sorry','Start','Sticker','Time','Unda','Undakanni','Va','Vada','Vaza','Veno','Vilikk','Wow','baby','broken','mathiyo','poda','saralla','Poda','Da','alive','help','Jocker','ayn','patti','poli','Adi','Age','Air','Album song','Album','Bgm','Breakup','Hacker','Janu','Koye','Life','Line','status','Marannu','Mole','Noob','Pavam','Podi','Sed akki','Sed song','Senti','Thair','Umma','Venda','What','age','air','bgm','breakup','dii','i love you','janu','kannappi','kazichilla','kollam','life','line','love status','marannu','miss you','mole','noob','podi','rip','sarasu','sed akki','sed song','senti','sorry','thair','umma','vaza','venda','vilikk','what','Aara','Andi','Business','Chaya','Dude','Chathu','Happy Birthday','Home','Kollum','Mandan','Name','Nee etha','Nikk','Njan vannu','Parayatte','Poyo','Sry','Troll','Uff','Verupikkalle','aara','andi','business','chaya','group chathu','kollum','mandan','nee etha','nikk','njan vannu','parayatte','poyo','sry','troll','uff','verupikkalle','Aliya','Friend','Mass','Naayi','Njan','Vazha','Verupikal','aliya','friend','mass','njan','pova','vazha','verupikal','Baby','Jerry','Love','Nithin','Myr','Bot','bot','Bro','bro','Girls','Kanja','Kanjav','Kili','kanjav','kanja','mudiyan','Xxx','vedi','Love','problem','bayankara','Cr7','mute','pedi','fuck','sed']
 array.map( async (a) => {
 let pattern = new RegExp(`\\b${a}\\b`, 'g');
 if(pattern.test(message.message)){
-       await message.client.sendMessage(message.jid, fs.readFileSync('./media/uploads/' + a + '.mp3'), MessageType.audio,{ mimetype: Mimetype.mp4Audio, quoted: message.data, ptt: true})
+       await message.client.sendMessage(message.jid, fs.readFileSync('./httm/uploads/' + a + '.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted: message.data, ptt: true})
 }
 });
     }
@@ -85,22 +83,22 @@ if(pattern.test(message.message)){
 }));
 }
     if (Config.GEAR == 'two') {    
-    Julie.addCommand({on: 'text', fromMe: false}, (async (message, match) => {   
+    Asena.addCommand({on: 'text', fromMe: false}, (async (message, match) => {   
         if(Config.BGMFILTER){
         let banned = jid.find( Jid => Jid === message.jid);
         if(banned !== undefined) return
         if (!!message.mention && message.mention[0] == '918921483992@s.whatsapp.net') {
-await message.client.sendMessage(message.jid, fs.readFileSync('./media/files/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio,contextInfo: { forwardingScore: 5, isForwarded: true }, quoted : message.data, ptt: true})
+await message.client.sendMessage(message.jid, fs.readFileSync('./httm/files/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio,contextInfo: { forwardingScore: 5, isForwarded: true }, quoted : message.data, ptt: true})
         }
         if (!!message.mention && message.mention[0] == Config.MENTION) {
-await message.client.sendMessage(message.jid, fs.readFileSync('./media/files/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
+await message.client.sendMessage(message.jid, fs.readFileSync('./httm/files/mention.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio, quoted : message.data, ptt: true})
         }
         var uri = encodeURI(match[1])
-const array = ['Fek','Ariyo','Ayn','Aysheri','Ayye','Baby','Bot','Chill','Da','Delete','Enth','Eppadi','Ethi','Happy','Hehe','Hello','Help','Hlo','How','Kali','Kd','King','Kollum','Kopp','Kundan','Life','Line','Love','Lover','Muthe','Nallath','Nice','Orakkam','Paatt','Para','Poda','Povoola','Pro','Pwoli','Remove','Sad','Scene','Sed','Sheri','Sherikkum','Single','Thanne','Thund','Vaa','Vanno','Vannu','Vere bot','Wait','Why','ariyo','ayn','aysheri','ayye','baby','chill','da','delete','enth','eppadi','ethi','happy','hehe','hello','hlo','how','kali','kd','king','kollum','kopp','kundan','leave','life','line','love','mrng','muthe','myr','nallath','nice','njan','orakkam','paatt','para','poda','podo','povoola','pro','pwoli','remove','sad','scene','sed','sheri','sherikkum','single','tagall','thanne','thund','vaa','vanno','vannu','vere bot','wait','why','Pinky','hi']
+const array = ['Hi','Fek','Ariyo','Ayn','Aysheri','Ayye','Baby','Bot','Chill','Da','Delete','Enth','Eppadi','Ethi','Happy','Hehe','Hello','Help','Hlo','How','Kali','Kd','King','Kollum','Kopp','Kundan','Life','Line','Love','Lover','Muthe','Myr','Nallath','Nice','Orakkam','Paatt','Para','Poda','Povoola','Pro','Pwoli','Remove','Sad','Scene','Sed','Sheri','Sherikkum','Single','Thanne','Thund','Vaa','Vanno','Vannu','Vere bot','Wait','Why','ariyo','ayn','aysheri','ayye','baby','chill','da','delete','enth','eppadi','ethi','happy','hehe','hello','help','hlo','how','kali','kd','king','kollum','kopp','kundan','leave','life','line','love','mrng','muthe','myr','nallath','nice','njan','orakkam','paatt','para','poda','podo','povoola','pro','pwoli','remove','sad','scene','sed','sheri','sherikkum','single','tagall','thanne','thund','vaa','vanno','vannu','vere bot','wait','why','Pinky','hi']
 array.map( async (a) => {
 let pattern = new RegExp(`\\b${a}\\b`, 'g');
 if(pattern.test(message.message)){
-       await message.client.sendMessage(message.jid, fs.readFileSync('./media/files/' + a + '.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio,contextInfo: { forwardingScore: 10, isForwarded: true },quoted: message.data, ptt: true})
+       await message.client.sendMessage(message.jid, fs.readFileSync('./httm/files/' + a + '.mp3'), MessageType.audio, { mimetype: Mimetype.mp4Audio,contextInfo: { forwardingScore: 10, isForwarded: true },quoted: message.data, ptt: true})
 }
 });
     }
@@ -117,18 +115,18 @@ if(pattern.test(message.message)){
     );
 }));
 }
-Julie.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
+Asena.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
     if(Config.STICKERP){
     let banned = jid.find( Jid => Jid === message.jid);
     if(banned !== undefined) return
-    if (!!message.mention && message.mention[0] == '918921483992@s.whatsapp.net') {
-await message.client.sendMessage(message.jid, fs.readFileSync('./media/stickers/mention.webp'), MessageType.sticker, { mimetype: Mimetype.webp, quoted : message.data, ptt: false})
+    if (!!message.mention && message.mention[0] == '919544685703@s.whatsapp.net') {
+await message.client.sendMessage(message.jid, fs.readFileSync('./httm/stickers/mention.webp'), MessageType.sticker, { mimetype: Mimetype.webp, quoted : message.data, ptt: false})
     }
-const array = ['Alone','alone','ariyo','Ariyo','bie','Bie','colony','Colony','Bye','Muthe','Police','Teach','Thech','Z','aayo','alla','anthas','ayin','aysheri','bie','bye','chathu','cheyalle','chunk','committed','mama','marichu','mention','mood','muthe','myre','njan','number','ok','oombi','ooo','pedicho','pidi','poweresh','sad','saved','shaad','shut','teach','test','thech','think','thund','umma','uyir','vannu','vibe','z','dead','JulieMwol','Like','pever','sry','night','indo','uff','poyi','scene','killadi','nee alle','sheri','vada','poocha','morning','pm','thund','remove','Sed','araa','Da','madthu','Hlo','air','Bomb','Julie','fan','charge','cute','Cute','Dance','dance','Eh','Entha','exam','Exam','Entha','fans','Fans','Girls','girls','give','Hate','hi','Hi','Hate','hlo','HLo','julie','kunna','Kunna','kutti','Kutti','love','Lub','Love','myr','Myr','myre','Myre','oh','Oh','sad','Sad','Search','search','Work','work','wow','Wow','z','Z','sed','Sed']
+const array = ['Alone','Ariyo','Ayin','Bie','Bomb','Bot','Bote','Cute','Hate','Hi','Hoi','Lub','Myr','Myre','Oh','Poda','Police','Poocha','Sed','Work','Wow','Z','aara','aayo','air','alla','alone','anthas','ariyo','ayin','aysheri','bie','bye','charge','chathu','cheyalle','chunk','colony','committed','cute','dance','dead','eda','eh','entha','exam','fan','fans','girl','girls','give','hate','hi','hlo','hoi','important','indo','killadi','kozhi','kunna','kutti','list','love','madthu','mama','marichu','mention','mood','morning','muthe','myr','myre','nee alle','njan','number','oh','ok','oombi','ooo','pedicho','pever','pidi','pm','powersh','powli','poyi','remove','sad','saved','scene','search','sed','shaad','sheri','shut','sry','teach','test','thech','think','thund','uff','umma','uyir','vada','vannu','vibe','work','wow','z']
 array.map( async (a) => {
 let pattern = new RegExp(`\\b${a}\\b`, 'g');
 if(pattern.test(message.message)){
-   await message.client.sendMessage(message.jid, fs.readFileSync('./media/stickers/' + a + '.webp'), MessageType.sticker, { mimetype: Mimetype.webp, quoted: message.data, ptt: false})
+   await message.client.sendMessage(message.jid, fs.readFileSync('./httm/stickers/' + a + '.webp'), MessageType.sticker, { mimetype: Mimetype.webp, quoted: message.data, ptt: false})
 }
 });
 }
@@ -160,51 +158,34 @@ async function checkImAdmin(message, user = message.client.user.jid) {
     return sonuc.includes(true);
 }
  
-Julie.addCommand({on: 'text', fromMe: false,onlyGroup: true}, (async (message, match) => {
+     Asena.addCommand({on: 'text', fromMe: false}, (async (message, match) => {
 
-    if(Config.THERI_KICK){
-    let banned = jid.find( Jid => Jid === message.jid);
-    if(banned !== undefined) return
-    
+        if(Config.THERI_KICK){
+        let banned = jid.find( Jid => Jid === message.jid);
+        if(banned !== undefined) return
+        
 const array = afn 
 array.map( async (a) => {
 let pattern = new RegExp(`\\b${a}\\b`, 'g');
 if(pattern.test(message.message)){
-        var us = await checkUsAdmin(message)
-        var im = await checkImAdmin(message)
-        if (!im) return;
-        if (us) return;
-await message.client.sendMessage(message.jid,Lang.KICK, MessageType.text, {quoted: message.data });  
-await message.client.groupRemove(message.jid, [message.data.participant]);                
+            var us = await checkUsAdmin(message)
+            var im = await checkImAdmin(message)
+            if (!im) return;
+            if (us) return;
+    await message.client.sendMessage(message.jid,'you used a bad word that we dont allow here \n -admin panal ', MessageType.text, {quoted: message.data });  
+    await message.client.groupRemove(message.jid, [message.data.participant]);                
 }
 });
-}
-
-var filtreler = await FilterDb.getFilter(message.jid);
-if (!filtreler) return; 
-filtreler.map(
-    async (filter) => {
-        pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
     }
-);
-}));
- Julie.addCommand({on: 'text', fromMe: false, onlyPm: true}, (async (message, match) => {
 
-    if(Config.PLKS){
-const array = afnp 
-array.map( async (a) => {
-let pattern = new RegExp(`\\b${a}\\b`, 'g');
-if(pattern.test(message.message)){          
-await message.client.sendMessage(message.jid,Lang.KICK2, MessageType.text, {quoted: message.data });               
-}
-});
-}
-
-var filtreler = await FilterDb.getFilter(message.jid);
-if (!filtreler) return; 
-filtreler.map(
-    async (filter) => {
-        pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
-    }
-);
+    var filtreler = await FilterDb.getFilter(message.jid);
+    if (!filtreler) return; 
+    filtreler.map(
+        async (filter) => {
+            pattern = new RegExp(filter.dataValues.regex ? filter.dataValues.pattern : ('\\b(' + filter.dataValues.pattern + ')\\b'), 'gm');
+            if (pattern.test(message.message)) {
+                await message.client.sendMessage(message.jid,filter.dataValues.text, MessageType.text, {quoted: message.data});
+            }
+        }
+    );
 }));
